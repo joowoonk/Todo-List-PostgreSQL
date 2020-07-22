@@ -14,7 +14,7 @@ app.use(express.json()); // allow us to access the req.body
 
 app.get("/todos", async (req, res) => {
   try {
-    const allTodos = await pool.query("SELECT * FROM todo"); //the reason why it's not returning because it uses select
+    const allTodos = await pool.query("SELECT * FROM todo ORDER BY todo_id"); //the reason why it's not returning because it uses select
 
     res.json(allTodos.rows);
   } catch (err) {
@@ -37,10 +37,11 @@ app.get("/todos/:id", async (req, res) => {
 
 app.post("/todos", async (req, res) => {
   try {
+    console.log(req.body);
     const { description } = req.body;
     const newTodo = await pool.query(
-      "INSERT INTO todo (description, priority) VALUES ($1, $2) RETURNING *",
-      [description, priority]
+      "INSERT INTO todo (description) VALUES ($1) RETURNING *",
+      [description]
     ); //adding RETURNING * will help to see what's being inserted
     res.json(newTodo.rows[0]);
   } catch (err) {
