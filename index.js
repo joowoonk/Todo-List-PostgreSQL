@@ -99,6 +99,11 @@ app.delete("/todos/:id", async (req, res) => {
   }
 });
 
+//entering random url that doesn't have it there will reroute to mainpage.
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client/build/index.html"));
+});
+
 app.listen(PORT, () => {
   console.log(`server is starting on port ${PORT}`);
 });
