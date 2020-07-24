@@ -34,3 +34,5 @@ module.exports = pool;
 //   database: "pernstack",
 //   port: 5432,
 // }
+
+//heroku pg:psql -a pern-todo-app-postgresql  <-- on commandline to go into postsql on heroku

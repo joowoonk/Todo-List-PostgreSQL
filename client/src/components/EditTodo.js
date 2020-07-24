@@ -7,7 +7,9 @@ const EditTodo = ({ todo, getTodos }) => {
     try {
       const body = { description };
 
-      //proxy
+      //proxy is only use in development so it will be ignored in production
+      //so if there is no http://localhost:5000 then by default it is going to use heroku domain
+      //remember this heroku app is just our server serving the build static content and also holding the restful api
 
       const res = await fetch(`/todos/${id}`, {
         method: "PUT",
