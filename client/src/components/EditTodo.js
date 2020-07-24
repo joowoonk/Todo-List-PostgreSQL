@@ -7,7 +7,9 @@ const EditTodo = ({ todo, getTodos }) => {
     try {
       const body = { description };
 
-      const res = await fetch(`http://localhost:5000/todos/${id}`, {
+      //proxy
+
+      const res = await fetch(`/todos/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
@@ -18,6 +20,7 @@ const EditTodo = ({ todo, getTodos }) => {
       console.error(err.message);
     }
   };
+
   return (
     <Fragment>
       {/* <!-- Button to Open the Modal --> */}

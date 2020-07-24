@@ -9,7 +9,7 @@ const ListTodos = ({ getTodos, todos, setTodos }) => {
   //delete todo function
   const deleteTodo = async (id) => {
     try {
-      const res = await fetch(`http://localhost:5000/todos/${id}`, {
+      const res = await fetch(`/todos/${id}`, {
         method: "DELETE",
       });
       //   console.log({ res });
