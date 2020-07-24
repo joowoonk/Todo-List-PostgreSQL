@@ -2,11 +2,32 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const pool = require("./db");
+const path = require("path");
+const PORT = process.env.PORT || 5000;
+
+//process.env - describe variable it's going to run
+//process.env.PORT
+//process.env.NODE_ENV => production or undefined
 
 //middleware using cors
 app.use(cors()); // this will allow local server from 5000 to 3000 to interact each other.
 
 app.use(express.json()); // allow us to access the req.body
+
+// app.use(express.static(path.join(__dirname, "client/build")));
+
+app.use(express.static("./client/build"));
+
+// app.use("/", express.static("./client/build"));
+
+if (process.env.NODE_ENV === "production") {
+  //server static content
+  //npm run build
+  app.use(express.static(path.join(__dirname, "client/build")));
+}
+
+console.log(__dirname);
+console.log(path.join(__dirname, "client/build"));
 
 //Routes//
 
@@ -78,6 +99,6 @@ app.delete("/todos/:id", async (req, res) => {
   }
 });
 
-app.listen(5000, () => {
-  console.log("server is starting on port 5000");
+app.listen(PORT, () => {
+  console.log(`server is starting on port ${PORT}`);
 });
