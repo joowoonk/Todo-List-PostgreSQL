@@ -5,3 +5,4 @@ CREATE TABLE todo (
     description VARCHAR(255)
 );
 
+-- SERIAL is auto increment PRIMARY KEY is unique
