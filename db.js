@@ -12,12 +12,6 @@ const devConfig = {
   port: process.env.PG_PORT,
 };
 
-// PG_USER = postgres
-// PG_PASSWORD = Kangonly34
-// PG_HOST = localhost
-// PG_PORT = 5432
-// PG_DATABASE = pernstack
-
 const pool = new Pool(devConfig);
 
 module.exports = pool;
